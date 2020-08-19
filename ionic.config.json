@@ -1,0 +1,7 @@
+{
+  "name": "demoMVD",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
