@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Listado de Cervezas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="beers$ | async as beers; else loading">
+    <ion-item *ngFor="let beer of beers">
+      <ion-thumbnail slot="start">
+        <img [src]="beer.image_url" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>
+          {{beer.name}}
+        </h2>
+        <p>
+          {{beer.description}}
+        </p>
+      </ion-label>
+      <ion-chip slot="end" [color]="beer.abv > 10 ? 'warning' : 'success'">
+        {{beer.abv | number}}%
+      </ion-chip>
+    </ion-item>
+  </div>
+
+  <ng-template #loading>
+    <ion-item *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]">
+      <div slot="start">
+        <ion-skeleton-text style="height:60px;width: 60px;" animated></ion-skeleton-text>
+      </div>
+      <div>
+        <ion-skeleton-text style="height: 25px; width: 100px;" animated></ion-skeleton-text>
+        <ion-skeleton-text style="height: 10px; width:275px;" animated></ion-skeleton-text>
+      </div>
+      <div slot="end">
+        <ion-skeleton-text style="height:35px;width: 60px;" animated></ion-skeleton-text>
+      </div>
+    </ion-item>
+  </ng-template>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center">
+      Angular MVD &copy; 2020
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
